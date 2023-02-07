@@ -1,0 +1,33 @@
+<!-- アカウント登録 -->
+<!DOCTYPE html> 
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postingsite</title>
+</head>
+<body>
+    <h2>新規登録</h2>
+    <p>→<a href="login.php">ログイン画面へ戻る</a></p>
+
+    <!-- action属性後で入力 -->
+    <form action="#" method="post">
+        <p>名前</p>
+        <input type="text" maxlength="30" placeholder="名前">
+        <p>名前(ふりがな)</p>
+        <input type="text" maxlength="50" placeholder="ふりがな">
+        <p>ID</p>
+        <input type="text" maxlength="100" placeholder="半角英数5文字以上">
+        <p>パスワード</p>
+        <input type="password" maxlength="50" placeholder="半角英数5文字以上">
+        <p>パスワード再入力</p>
+        <input type="password" maxlength="50" placeholder="もう一度入力">
+        <p>生年月日</p>
+        <input type="date" name="calender" max="9999-12-31">
+        <p><button type="submit">登録する</button></p>
+    </form>
+
+    
+</body>
+</html>
