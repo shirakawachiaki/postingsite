@@ -28,7 +28,7 @@ if($date['pass'] === $pass){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>postingsite</title>
+    <title>PostingSite</title>
 </head>
 <body>
     <h1>旅と食</h1>
@@ -40,7 +40,7 @@ if($date['pass'] === $pass){
         <button type="submit">ログイン</button>
     </form>
 
-    <p>→<a href="account_new.html">新規登録はこちら</a></p>
+    <p>→<a href="account_new.php">新規登録はこちら</a></p>
     
 </body>
 </html>

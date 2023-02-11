@@ -7,9 +7,6 @@
     <title>PostingSite</title>
 </head>
 <body>
-<p>投稿を削除しました</p>
-
-<p><a href="post_all.php">投稿一覧へ戻る</a></p>
-    
+    <p>ユーザー登録が完了しました</p>
 </body>
 </html>
