@@ -33,3 +33,5 @@ if(!$articles){
         <?php endwhile; ?>
         <p>→<a href="post_all.php">投稿一覧へ</a></p>
     <?php endif; ?>
+</body>
+</html>
