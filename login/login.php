@@ -1,7 +1,7 @@
 <!-- ログイン画面 -->
 <?php
 session_start();
-require('dbconnect.php');
+require('../dbconnect.php');
 
 // if(isset($_COOKIE['id']) && $_COOKIE['id'] !==''){
 //     $_POST['id'] = $_COOKIE['id'];
@@ -29,7 +29,7 @@ if(!empty($_POST)){
                 setcookie('pass', $_POST['pass'], time()+60*60*24*10);
             }
 
-            header('Location:index.php');
+            header('Location:../posting/home.php');
             exit();
         }else{
             $error['login'] = 'failed';

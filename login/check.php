@@ -46,7 +46,7 @@ if(!$_SESSION['join']){
             </dd>
             <dt>アイコン画像</dt>
             <dd>
-                <p><img src="./member_picture/<?php echo htmlspecialchars($_SESSION['join']['icon'],ENT_QUOTES);?>" width="100" alt="アイコン画像" /><p>
+                <p><img src="../member_picture/<?php echo htmlspecialchars($_SESSION['join']['icon'],ENT_QUOTES);?>" width="100" alt="アイコン画像" /><p>
             </dd>
         </dl>
         <div><a href="account_new.php?action=rewrite">修正する</a> | <button type="submit">登録する</button></div>

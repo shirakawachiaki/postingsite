@@ -41,7 +41,7 @@ if(!empty($_POST)){
 
     if(empty($error)){
         $icon =date('YmdHis').$_FILES['icon']['name'];
-        move_uploaded_file($_FILES['icon']['tmp_name'], 'member_picture/'.$icon);
+        move_uploaded_file($_FILES['icon']['tmp_name'], '../member_picture/'.$icon);
 
         $_SESSION['join'] =$_POST;
         $_SESSION['join']['icon'] = $icon;

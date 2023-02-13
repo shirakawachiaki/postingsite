@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('dbconnect.php');
+require('../dbconnect.php');
 
 if(!empty($_POST)){
     $stmt = $db->prepare('insert into members(name, read_name, sub_name, login_id, password, birthday, icon) values(?,?,?,?,?,?,?)');
