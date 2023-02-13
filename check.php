@@ -4,7 +4,7 @@ session_start();
 
 if(!$_SESSION['join']){
     header('Location:account_new.php');
-    exit;
+    exit();
 }
 ?>
 
@@ -17,22 +17,37 @@ if(!$_SESSION['join']){
     <title>PostingSite</title>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="check_do.php" method="post">
+        <input type="hidden" name="action" value="submit"/>
         <dl>
             <dt>名前</dt>
-            <dd></dd>
+            <dd>
+                <?php echo htmlspecialchars($_SESSION['join']['name'],ENT_QUOTES);?>
+            </dd>
             <dt>名前(ふりがな)</dt>
-            <dd></dd>
+            <dd>
+                <?php echo htmlspecialchars($_SESSION['join']['read_name'],ENT_QUOTES);?>
+            </dd>
             <dt>ニックネーム</dt>
-            <dd></dd>
+            <dd>
+                <?php echo htmlspecialchars($_SESSION['join']['sub_name'],ENT_QUOTES);?>
+            </dd>
             <dt>ログインID</dt>
-            <dd></dd>
+            <dd>
+                <?php echo htmlspecialchars($_SESSION['join']['login_id'],ENT_QUOTES);?>
+            </dd>
             <dt>パスワード</dt>
-            <dd></dd>
+            <dd>
+                パスワードは表示されません。
+            </dd>
             <dt>生年月日</dt>
-            <dd></dd>
+            <dd>
+                <?php echo htmlspecialchars($_SESSION['join']['birthday'],ENT_QUOTES);?>
+            </dd>
             <dt>アイコン画像</dt>
-            <dd></dd>
+            <dd>
+                <p><img src="./member_picture/<?php echo htmlspecialchars($_SESSION['join']['icon'],ENT_QUOTES);?>" width="100" alt="アイコン画像" /><p>
+            </dd>
         </dl>
         <div><a href="account_new.php?action=rewrite">修正する</a> | <button type="submit">登録する</button></div>
     </form>
