@@ -1,6 +1,6 @@
 <!-- 投稿の一覧を表示する -->
 <?php 
-require('dbconnect.php');
+require('../dbconnect.php');
 $articles = $db->query('select * from articles order by id desc');
 if(!$articles){
     die ($db->error);
@@ -16,7 +16,7 @@ if(!$articles){
 </head>
 <body>
     <h1>投稿一覧</h1>
-<p>→<a href="index.php">ホーム画面に戻る</a></p>
+<p>→<a href="home.php">ホーム画面に戻る</a></p>
 <?php while($article= $articles->fetch_assoc()): ?>
         <div>
             <h2><a href="post.php?id=<?php echo $article['id'];?>"><?php echo htmlspecialchars($article['title']);?></a></h2>

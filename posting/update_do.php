@@ -1,5 +1,5 @@
 <?php
-require('dbconnect.php');
+require('../dbconnect.php');
 
 $stmt = $db->prepare('update articles set title=?, article=? where id=?');
 if(!$stmt){

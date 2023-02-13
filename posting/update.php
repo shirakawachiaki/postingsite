@@ -1,6 +1,6 @@
 <!-- 投稿の編集 -->
 <?php
-require('dbconnect.php');
+require('../dbconnect.php');
 $stmt = $db->prepare('select * from articles where id=?');
 if(!$stmt){
     die ($db->error);
@@ -41,7 +41,7 @@ $stmt->fetch();
         <button type="submit">変更する</button>
     </form>
 
-    <p>→<a href="index.php">ホーム画面に戻る</a></p>
+    <p>→<a href="home.php">ホーム画面に戻る</a></p>
 
 </body>
 </html>

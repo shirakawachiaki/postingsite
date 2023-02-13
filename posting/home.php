@@ -1,6 +1,6 @@
 <!-- ホーム画面 -->
 <?php
-require('dbconnect.php');
+require('../dbconnect.php');
 $articles = $db->query('select * from articles order by id desc limit 0,5');
 if(!$articles){
     die ($db->error);
@@ -18,7 +18,7 @@ if(!$articles){
 <body>
     <h1>旅と食</h1>
     <p>→<a href="input.html">投稿を作成する</a></p>
-    <p>→<a href="login.php">ログイン画面へ戻る</a></p>
+    <p>→<a href="../login/login.php">ログイン画面へ戻る</a></p>
     <?php if(!$articles):?>
         <p>投稿はありません</p>
     <?php else:?>

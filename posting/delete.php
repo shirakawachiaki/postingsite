@@ -1,7 +1,7 @@
 <!-- 投稿の削除 -->
 
 <?php
-require('dbconnect.php');
+require('../dbconnect.php');
 $stmt = $db->prepare('delete from articles where id=?');
 if(!$stmt){
     die('$db->error');
