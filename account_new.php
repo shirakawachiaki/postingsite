@@ -30,6 +30,7 @@ if(!empty($_POST)){
     if($_POST['birthday'] == ''){
         $error['birthday'] = 'blank';
     }
+
     $fileName = $_FILES['icon']['name'];
     if(!empty($fileName)){
         $ext = substr($fileName,-3);
@@ -45,7 +46,7 @@ if(!empty($_POST)){
         $_SESSION['join'] =$_POST;
         $_SESSION['join']['icon'] = $icon;
         header('Location: check.php');
-        exit;
+        exit();
     }
 }
 ?>
@@ -72,9 +73,13 @@ if(!empty($_POST)){
                         value="<?php echo htmlspecialchars($_POST['name'],ENT_QUOTES);?>">
                 <?php else: ?>
                     <input type="text" name="name" maxlength="30" placeholder="名前">
-                <?php endif; ?>
+                    <?php endif; ?>
+
+                    <?php if(isset($error['name']) && $error['name'] == 'blank'):?>
+                        <p class ='error'>*名前を入力してください</p>
+                    <?php endif; ?>
             </dd>
-            <dt>名前(ふりがな)</dt>
+            <dt>ふりがな</dt>
             <dd>
                 <?php if(isset($_POST['read_name'])):?>
                     <input type="text" name="read_name" maxlength="50" placeholder="ふりがな" 
@@ -144,10 +149,10 @@ if(!empty($_POST)){
             </dd>
             <dt>アイコン画像</dt>
             <dd>
-                <input type="file" name="icon" max="9999-12-31">
+                <input type="file" name="icon" max="9999-12-31" required>
                 <?php if(isset($error['icon']) && $error['icon'] == 'type'):?>
                     <p class ='error'>*写真は「.jpg]または「.gif」を指定してください</p>
-                <?php elseif(!empty($error)):?>
+                <?php elseif(!isset($error['icon'])):?>
                     <p class ='error'>*もう一度画像を選択してください</p>
                 <?php endif; ?>
             </dd>
