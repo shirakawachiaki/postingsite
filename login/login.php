@@ -1,7 +1,8 @@
 <!-- ログイン画面 -->
 <?php
-session_start();
 require('../dbconnect.php');
+
+session_start();
 
 // if(isset($_COOKIE['id']) && $_COOKIE['id'] !==''){
 //     $_POST['id'] = $_COOKIE['id'];
@@ -10,25 +11,30 @@ require('../dbconnect.php');
 // }
 
 if(!empty($_POST)){
-    if($_POST['id'] !== '' && $_POST['pass'] !== ''){
-        $login = $db->prepare('select * from members where login_id=? and password=?');
+
+    $login_id = $_POST['login_id'];
+    $pass = sha1($_POST['pass']);
+    if( $login_id !== '' && $pass !== ''){
+        $login = $db->prepare('select id,sub_name, icon from members where login_id=? and password=?');
         if(!$login){
             die ($db->error);
         }
-        $pass = $_POST['pass'];
-        $login->bind_param('ss',$_POST['id'], sha1($pass));
+        $login->bind_param('ss',$login_id, $pass);
         $login->execute();
-        $member =$login->fetch();
+        $login->bind_result($id,$sub_name, $icon);
+        $member = $login->fetch();
+
 
         if($member){
-            $_SESSION['id'] = $member['login_id'];
+            $_SESSION['id'] = $id;
+            $_SESSION['sub_name'] =$sub_name;
+            $_SESSION['icon'] = $icon;
             $_SESSION['time'] = time();
 
-            if($_POST['save'] == 'on'){
-                setcookie('id', $_POST['id'], time()+60*60*24*10);
-                setcookie('pass', $_POST['pass'], time()+60*60*24*10);
-            }
-
+            // if($_POST['save'] == 'on'){
+            //     setcookie('id', $_POST['login_id'], time()+60*60*24*10);
+            //     setcookie('pass', $_POST['pass'], time()+60*60*24*10);
+            // }
             header('Location:../posting/home.php');
             exit();
         }else{
@@ -56,27 +62,22 @@ if(!empty($_POST)){
     <form action="" method="post">
         <dt>ログインID</dt>
         <dd>
-            <?php if(isset($_POST['read_name'])):?>
-                <input type="id" name="id" maxlength="50" placeholder="ログインIDを入力" 
-                    value="<?php echo htmlspecialchars($_POST['id'],ENT_QUOTES);?>">
+            <?php if(isset($_POST['login_id'])):?>
+                <input type="id" name="login_id" maxlength="50" placeholder="ログインIDを入力" 
+                    value="<?php echo htmlspecialchars($_POST['login_id'],ENT_QUOTES);?>">
             <?php else: ?>
-                <input type="id" name="id" maxlength="50" placeholder="ログインIDを入力"?>
+                <input type="id" name="login_id" maxlength="50" placeholder="ログインIDを入力"?>
             <?php endif; ?>
             <?php if(isset($error['login']) && $error['login'] == 'blank'):?>
-                <p class ='error'>メールアドレスとパスワードを記入してください</p>
+                <p class ='error'>ログインIDとパスワードを記入してください</p>
             <?php elseif(isset($error['login']) && $error['login'] == 'failed'): ?>
-                <p class ='error'>メールアドレスまたはパスワードが間違っています</p>
+                <p class ='error'>ログインIDまたはパスワードが間違っています</p>
             <?php endif;?>
                 
         </dd>    
         <dt>PASSWORD</dt>
         <dd>
-            <?php if(isset($_POST['read_name'])):?>
-                <input type="password" name="pass" maxlength="50" placeholder="パスワードを入力" 
-                    value="<?php echo htmlspecialchars($_POST['pass'],ENT_QUOTES);?>">
-            <?php else: ?>
-                <input type="password" name="pass" maxlength="50" placeholder="パスワードを入力"?>
-            <?php endif; ?>
+            <input type="password" name="pass" maxlength="50" placeholder="パスワードを入力" >
         </dd>    
         <dt>自動ログイン</dt>
         <dd>
