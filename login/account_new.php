@@ -135,7 +135,7 @@ if(!empty($_REQUEST['action']) && $_REQUEST['action'] == 'rewrite'){
             </dd>
             <dt>パスワード再入力</dt>
             <dd>
-                <input type="password" name="confirm_password" maxlength="50" placeholder="もう一度入力">
+                <input type="password" name="confirm_password" maxlength="50" placeholder="もう一度入力してください">
                 <?php if(isset($error['confirm_password']) && $error['confirm_password'] == 'wrong'):?>
                     <p class ='error'>*正しく入力してください</p>
                 <?php endif; ?>
@@ -143,10 +143,10 @@ if(!empty($_REQUEST['action']) && $_REQUEST['action'] == 'rewrite'){
             <dt>生年月日</dt>
             <dd>
                 <?php if(isset($_POST['birthday'])):?>
-                    <input type="date" name="birthday" maxlength="50"
+                    <input type="date" name="birthday" max="9999-12-31"
                     value="<?php echo htmlspecialchars($_POST['birthday'],ENT_QUOTES);?>">
                 <?php else: ?>
-                    <input type="date" name="birthday" maxlength="50"?>
+                    <input type="date" name="birthday" max="9999-12-31"?>
                 <?php endif; ?>
 
                 <?php if(isset($error['birthday']) && $error['birthday'] == 'blank'):?>
@@ -155,7 +155,7 @@ if(!empty($_REQUEST['action']) && $_REQUEST['action'] == 'rewrite'){
             </dd>
             <dt>アイコン画像</dt>
             <dd>
-                <input type="file" name="icon" max="9999-12-31" required>
+                <input type="file" name="icon"  required>
                 <?php if(isset($error['icon']) && $error['icon'] == 'type'):?>
                     <p class ='error'>*写真は「.jpg]または「.gif」を指定してください</p>
                 <?php elseif(!isset($error['icon'])):?>

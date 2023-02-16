@@ -8,13 +8,13 @@ if(!empty($_POST)){
 if(!$stmt){
     die ($db->error);
 }
-$secret = $_SESSION['join']['password'];
+$secret = sha1($_SESSION['join']['password']);
 $stmt->bind_param('sssssss',
     $_SESSION['join']['name'],
     $_SESSION['join']['read_name'],
     $_SESSION['join']['sub_name'],
     $_SESSION['join']['login_id'],
-    sha1($secret),
+    $secret,
     $_SESSION['join']['birthday'],
     $_SESSION['join']['icon']);
 $success = $stmt->execute();
