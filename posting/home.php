@@ -1,10 +1,20 @@
 <!-- ホーム画面 -->
 <?php
 require('../dbconnect.php');
-$articles = $db->query('select * from articles order by id desc limit 0,5');
-if(!$articles){
-    die ($db->error);
+session_start();
+
+if(isset($_SESSION['id']) && !is_null($_SESSION['id'])&& $_SESSION['time'] + 3600 > time()){
+    $articles = $db->query('select m.icon, a.* from members m,articles a where m.id = a.member_id order by id desc limit 0,3');
+    if(!$articles){
+        die ($db->error);
+    }
+
+    $_SESSION['time'] =time();
+    $sub_name= $_SESSION['sub_name'];
+}else{
+    header('Location:../login/login.php');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -16,17 +26,23 @@ if(!$articles){
     <title>PostingSite</title>
 </head>
 <body>
-    <h1>旅と食</h1>
-    <p>→<a href="input.html">投稿を作成する</a></p>
+    <h1>旅と食と</h1>
+    <h2>WELCOME *<?php echo $sub_name?>*</h2>
+    <p><img src="../member_picture/<?php echo htmlspecialchars($_SESSION['icon'],ENT_QUOTES);?>" width="100" alt="アイコン画像" />
+    <p>→<a href="input.php">投稿を作成する</a></p>
     <p>→<a href="../login/login.php">ログイン画面へ戻る</a></p>
-    <?php if(!$articles):?>
+    
+    <?php if(empty($articles)):?>
         <p>投稿はありません</p>
     <?php else:?>
         <h2>◯最新の投稿◯</h2>
         <?php while($article= $articles->fetch_assoc()): ?>
         <div>
+            <p>投稿者:<img src="../member_picture/<?php echo htmlspecialchars($article['icon'],ENT_QUOTES);?>" width="50" alt="アイコン画像" /></p>
             <h2><a href="post.php?id=<?php echo  $article['id']; ?>"><?php echo htmlspecialchars($article['title']);?></a></h2>
+            <p><img src="../article_photos/<?php echo htmlspecialchars($article['photo']);?>" width="300" alt="投稿画像" /><p>
             <p><?php echo htmlspecialchars($article['article']);?></p>
+            <p><a href="post.php?id=<?php echo $article['id'];?>">コメントする</a></p>
             <time><?php echo htmlspecialchars($article['created']);?></time>
         </div>
         <hr>
