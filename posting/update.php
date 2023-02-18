@@ -15,7 +15,7 @@ $result =$stmt->execute();
 if(!$result){
     die($db->error);
 }
-$stmt->bind_result($id,$title,$article,$created);
+$stmt->bind_result($id,$member_id,$title,$article,$photo,$created,$modified);
 $stmt->fetch();
 
 
@@ -37,7 +37,7 @@ $stmt->fetch();
         <textarea name="title" cols="50" rows="2" placeholder="タイトルを入力"><?php echo htmlspecialchars($title);?>
         </textarea><br>
         <textarea name="article" cols="100" rows="20" placeholder="投稿を入力"><?php echo htmlspecialchars($article);?>
-        </textarea><br> 
+        </textarea><br>
         <button type="submit">変更する</button>
     </form>
 
