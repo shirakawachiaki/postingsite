@@ -15,9 +15,11 @@ $login_member_icon= $_SESSION['icon']
     <title>PostingSite(投稿)</title>
 </head>
 <body>
+    <div>
+        <h2><?php echo $sub_name?>の投稿</h2>
+        <p><img src="../member_picture/<?php echo htmlspecialchars($_SESSION['icon'],ENT_QUOTES);?>" width="100" alt="アイコン画像" ></p>
+    </div>
     <form action="input_do.php" method="post" enctype="multipart/form-data">
-    <h2><?php echo $sub_name?>の投稿</h2>
-    <p><img src="../member_picture/<?php echo htmlspecialchars($_SESSION['icon'],ENT_QUOTES);?>" width="100" alt="アイコン画像" /><p>
         <textarea name="title" cols="50" rows="2" placeholder="タイトルを入力"></textarea><br>
         <textarea name="article" cols=100" rows="20" placeholder="投稿を入力"></textarea><br>
         <input type="file" name="photo" accept=".jpg, .jpeg" ><br>
