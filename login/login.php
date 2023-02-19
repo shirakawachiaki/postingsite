@@ -54,40 +54,57 @@ if(!empty($_POST)){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PostingSite</title>
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
-    <h1>旅と食</h1>
-    <h2>ログイン</h2>
-    <!-- action属性後で入力 -->
-    <form action="" method="post">
-        <dt>ログインID</dt>
-        <dd>
-            <?php if(isset($_POST['login_id'])):?>
-                <input type="id" name="login_id" maxlength="50" placeholder="ログインIDを入力" 
-                    value="<?php echo htmlspecialchars($_POST['login_id'],ENT_QUOTES);?>">
-            <?php else: ?>
-                <input type="id" name="login_id" maxlength="50" placeholder="ログインIDを入力"?>
-            <?php endif; ?>
-            <?php if(isset($error['login']) && $error['login'] == 'blank'):?>
-                <p class ='error'>ログインIDとパスワードを記入してください</p>
-            <?php elseif(isset($error['login']) && $error['login'] == 'failed'): ?>
-                <p class ='error'>ログインIDまたはパスワードが間違っています</p>
-            <?php endif;?>
-                
-        </dd>    
-        <dt>PASSWORD</dt>
-        <dd>
-            <input type="password" name="pass" maxlength="50" placeholder="パスワードを入力" >
-        </dd>    
-        <dt>自動ログイン</dt>
-        <dd>
-            <input id="save" type="checkbox" name="save" value="on">
-            <label for="save">次回から自動ログインをする</label>
-        </dd>
-        <button type="submit">ログイン</button>
-    </form>
+    <header>
+        <div class="logo">
+        <a href="home.php"><img src="../images/title.PNG" alt="食と旅と"></a>
+        </div>
+        <nav>
+            <ul class="global_nav">
+                <li><a href="home.php">ホーム画面</a></li>
+                <li><a href="post_all.php">投稿一覧</a></li>
+                <li><a href="input.php">新規投稿の作成</a></li>
+                <li><a href="../login/login.php">ログイン画面へ戻る</a></li>
 
-    <p>→<a href="account_new.php">新規登録はこちら</a></p>
-    
+            </ul>
+        </nav>
+    </header>
+    <div id ="wrap">
+        <div class="content">
+            <h2>ログイン</h2>
+            <!-- action属性後で入力 -->
+            <form action="" method="post">
+                <dt>ログインID</dt>
+                <dd>
+                    <?php if(isset($_POST['login_id'])):?>
+                        <input type="id" name="login_id" maxlength="50" placeholder="ログインIDを入力" 
+                            value="<?php echo htmlspecialchars($_POST['login_id'],ENT_QUOTES);?>">
+                    <?php else: ?>
+                        <input type="id" name="login_id" maxlength="50" placeholder="ログインIDを入力"?>
+                    <?php endif; ?>
+                    <?php if(isset($error['login']) && $error['login'] == 'blank'):?>
+                        <p class ='error'>ログインIDとパスワードを記入してください</p>
+                    <?php elseif(isset($error['login']) && $error['login'] == 'failed'): ?>
+                        <p class ='error'>ログインIDまたはパスワードが間違っています</p>
+                    <?php endif;?>
+                        
+                </dd>    
+                <dt>PASSWORD</dt>
+                <dd>
+                    <input type="password" name="pass" maxlength="50" placeholder="パスワードを入力" >
+                </dd>    
+                <dt>自動ログイン</dt>
+                <dd>
+                    <input id="save" type="checkbox" name="save" value="on">
+                    <label for="save">次回から自動ログインをする</label>
+                </dd>
+                <button type="submit">ログイン</button>
+            </form>
+            <br>
+            <p>→<a href="account_new.php">新規登録はこちら</a></p>
+        </div>
+    </div>    
 </body>
 </html>

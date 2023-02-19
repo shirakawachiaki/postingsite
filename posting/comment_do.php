@@ -5,9 +5,9 @@ require('../dbconnect.php');
 session_start();
 $login_member_id = $_SESSION['id']; 
 
+$post_id=filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
 if($_POST['comment'] != ''){
     $comment = trim(filter_input(INPUT_POST,'comment',FILTER_SANITIZE_SPECIAL_CHARS));
-    $post_id=filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
 
     $stmt = $db->prepare('insert into comments(post_id, member_id, comment) values (?,?,?)');
     if(!$stmt){
@@ -20,5 +20,4 @@ if($_POST['comment'] != ''){
     }
     header('Location: post.php?id='.$post_id);
 }else{
-    header('Location:post.php');
-}
+    header('Location: post.php?id='.$post_id);}

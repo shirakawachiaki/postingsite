@@ -4,8 +4,8 @@ session_start();
 $login_member_id = $_SESSION['id']; 
 
 if($_POST['title'] != '' && $_POST['article'] != ''){
-    $title = filter_input(INPUT_POST,'title',FILTER_SANITIZE_SPECIAL_CHARS);
-    $article = filter_input(INPUT_POST,'article',FILTER_SANITIZE_SPECIAL_CHARS);
+    $title = trim(filter_input(INPUT_POST,'title',FILTER_SANITIZE_SPECIAL_CHARS));
+    $article =trim(filter_input(INPUT_POST,'article',FILTER_SANITIZE_SPECIAL_CHARS));
     $photoName = $_FILES['photo']['name'];
     if(!empty($photoName)){
         if(substr($photoName,-3) != 'jpg' && substr($photoName,-3) !='gif' && substr($photoName,-4) != 'jpeg'){

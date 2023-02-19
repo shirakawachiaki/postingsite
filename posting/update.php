@@ -28,20 +28,36 @@ $stmt->fetch();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PostingSite</title>
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
-    <h2>投稿の編集</h2>
+    <header>
+        <div class="logo">
+        <a href="home.php"><img src="../images/title.PNG" alt="食と旅と"></a>
+        </div>
+        <nav>
+            <ul class="global_nav">
+                <li><a href="home.php">ホーム画面</a></li>
+                <li><a href="post_all.php">投稿一覧</a></li>
+                <li><a href="input.php">新規投稿の作成</a></li>
+                <li><a href="../login/login.php">ログイン画面へ戻る</a></li>
 
-    <form action="update_do.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $id;?>">
-        <textarea name="title" cols="50" rows="2" placeholder="タイトルを入力"><?php echo htmlspecialchars($title);?>
-        </textarea><br>
-        <textarea name="article" cols="100" rows="20" placeholder="投稿を入力"><?php echo htmlspecialchars($article);?>
-        </textarea><br>
-        <button type="submit">変更する</button>
-    </form>
-
-    <p>→<a href="home.php">ホーム画面に戻る</a></p>
-
+            </ul>
+        </nav>
+    </header>
+    <div id ="wrap">
+        <div class="content">
+            <h2>投稿の編集</h2>
+            <form action="update_do.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $id;?>">
+                <textarea name="title" cols="50" rows="2" placeholder="タイトルを入力"><?php echo trim(htmlspecialchars($title));?>
+                </textarea><br>
+                <textarea name="article" cols="100" rows="20" placeholder="投稿を入力"><?php echo trim(htmlspecialchars($article));?>
+                </textarea><br>
+                <button type="submit">変更する</button>
+            </form>
+            <p>→<a href="post.php?id=<?php echo $id;?>">戻る</a></p>
+        </div>
+    </div>
 </body>
 </html>

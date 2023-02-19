@@ -64,107 +64,126 @@ if(!empty($_REQUEST['action']) && $_REQUEST['action'] == 'rewrite'){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PostingSite</title>
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
-    <h2>新規登録</h2>
-    <p>→<a href="login.php">ログイン画面へ戻る</a></p>
+    <header>
+        <div class="logo">
+        <a href="home.php"><img src="../images/title.PNG" alt="食と旅と"></a>
+        </div>
+        <nav>
+            <ul class="global_nav">
+                <li><a href="home.php">ホーム画面</a></li>
+                <li><a href="post_all.php">投稿一覧</a></li>
+                <li><a href="input.php">新規投稿の作成</a></li>
+                <li><a href="../login/login.php">ログイン画面へ戻る</a></li>
 
-    <!-- action属性後で入力 -->
-    <form action=" " method="post" enctype="multipart/form-data">
-        <dl>
-            <dt>名前</dt>
-            <dd>
-                <?php if(isset($_POST['read_name'])):?>
-                    <input type="text" name="name" maxlength="30" placeholder="名前" 
-                        value="<?php echo htmlspecialchars($_POST['name'],ENT_QUOTES);?>">
-                <?php else: ?>
-                    <input type="text" name="name" maxlength="30" placeholder="名前">
-                    <?php endif; ?>
+            </ul>
+        </nav>
+    </header>
+    <div id ="wrap">
+        <div class="content">
+            <h2>新規登録</h2>
+            <p>→<a href="login.php">ログイン画面へ戻る</a></p>
 
-                    <?php if(isset($error['name']) && $error['name'] == 'blank'):?>
-                        <p class ='error'>*名前を入力してください</p>
-                    <?php endif; ?>
-            </dd>
-            <dt>ふりがな</dt>
-            <dd>
-                <?php if(isset($_POST['read_name'])):?>
-                    <input type="text" name="read_name" maxlength="50" placeholder="ふりがな" 
-                        value="<?php echo htmlspecialchars($_POST['read_name'],ENT_QUOTES);?>">
-                <?php else: ?>
-                    <input type="text" name="read_name" maxlength="50" placeholder="ふりがな"?>
-                <?php endif; ?>
+            <!-- action属性後で入力 -->
+            <form action=" " method="post" enctype="multipart/form-data">
+                <dl>
+                    <dt>名前</dt>
+                    <dd>
+                        <?php if(isset($_POST['read_name'])):?>
+                            <input type="text" name="name" maxlength="30" placeholder="名前" 
+                                value="<?php echo htmlspecialchars($_POST['name'],ENT_QUOTES);?>">
+                        <?php else: ?>
+                            <input type="text" name="name" maxlength="30" placeholder="名前">
+                            <?php endif; ?>
 
-                <?php if(isset($error['read_name']) && $error['read_name'] == 'blank'):?>
-                    <p class ='error'>*ふりがなを入力してください</p>
-                <?php endif; ?>
-            </dd>
-            <dt>ニックネーム</dt>
-            <dd>
-                <?php if(isset($_POST['sub_name'])):?>
-                <input type="text" name="sub_name" maxlength="50" placeholder="ニックネーム" 
-                    value="<?php echo htmlspecialchars($_POST['sub_name'],ENT_QUOTES);?>">
-                <?php else: ?>
-                    <input type="text" name="sub_name" maxlength="50" placeholder="ニックネーム"?>
-                <?php endif; ?>
+                            <?php if(isset($error['name']) && $error['name'] == 'blank'):?>
+                                <p class ='error'>*名前を入力してください</p>
+                            <?php endif; ?>
+                    </dd>
+                    <dt>ふりがな</dt>
+                    <dd>
+                        <?php if(isset($_POST['read_name'])):?>
+                            <input type="text" name="read_name" maxlength="50" placeholder="ふりがな" 
+                                value="<?php echo htmlspecialchars($_POST['read_name'],ENT_QUOTES);?>">
+                        <?php else: ?>
+                            <input type="text" name="read_name" maxlength="50" placeholder="ふりがな"?>
+                        <?php endif; ?>
 
-                <?php if(isset($error['sub_name']) && $error['sub_name'] == 'blank'):?>
-                    <p class ='error'>*ニックネームを入力してください</p>
-                <?php endif; ?>
-            </dd>
-            <dt>ログインID</dt>
-            <dd>
-                <?php if(isset($_POST['login_id'])):?>
-                <input type="text" name="login_id" maxlength="50" placeholder="半角英数4文字以上" 
-                    value="<?php echo htmlspecialchars($_POST['login_id'],ENT_QUOTES);?>">
-                <?php else: ?>
-                    <input type="text" name="login_id" maxlength="50" placeholder="半角英数4文字以上"?>
-                <?php endif; ?>
+                        <?php if(isset($error['read_name']) && $error['read_name'] == 'blank'):?>
+                            <p class ='error'>*ふりがなを入力してください</p>
+                        <?php endif; ?>
+                    </dd>
+                    <dt>ニックネーム</dt>
+                    <dd>
+                        <?php if(isset($_POST['sub_name'])):?>
+                        <input type="text" name="sub_name" maxlength="50" placeholder="ニックネーム" 
+                            value="<?php echo htmlspecialchars($_POST['sub_name'],ENT_QUOTES);?>">
+                        <?php else: ?>
+                            <input type="text" name="sub_name" maxlength="50" placeholder="ニックネーム"?>
+                        <?php endif; ?>
 
-                <?php if(isset($error['login_id']) && $error['login_id'] == 'blank'):?>
-                    <p class ='error'>*ログインIDを入力してください</p>
-                <?php endif; ?>
-            </dd>
-            <dt>パスワード</dt>
-            <dd>
-                <input type="password" name="password" maxlength="50" placeholder="半角英数4文字以上" >
-                <?php if(isset($error['password']) && $error['password'] == 'blank'):?>
-                    <p class ='error'>*ログインIDを入力してください</p>
-                <?php elseif(isset($error['password']) && $error['password'] == 'length'):?>
-                    <p class ='error'>*4文字以上で入力してください</p>
-                <?php endif; ?>
-            </dd>
-            <dt>パスワード再入力</dt>
-            <dd>
-                <input type="password" name="confirm_password" maxlength="50" placeholder="もう一度入力してください">
-                <?php if(isset($error['confirm_password']) && $error['confirm_password'] == 'wrong'):?>
-                    <p class ='error'>*正しく入力してください</p>
-                <?php endif; ?>
-            </dd>
-            <dt>生年月日</dt>
-            <dd>
-                <?php if(isset($_POST['birthday'])):?>
-                    <input type="date" name="birthday" max="9999-12-31"
-                    value="<?php echo htmlspecialchars($_POST['birthday'],ENT_QUOTES);?>">
-                <?php else: ?>
-                    <input type="date" name="birthday" max="9999-12-31"?>
-                <?php endif; ?>
+                        <?php if(isset($error['sub_name']) && $error['sub_name'] == 'blank'):?>
+                            <p class ='error'>*ニックネームを入力してください</p>
+                        <?php endif; ?>
+                    </dd>
+                    <dt>ログインID</dt>
+                    <dd>
+                        <?php if(isset($_POST['login_id'])):?>
+                        <input type="text" name="login_id" maxlength="50" placeholder="半角英数4文字以上" 
+                            value="<?php echo htmlspecialchars($_POST['login_id'],ENT_QUOTES);?>">
+                        <?php else: ?>
+                            <input type="text" name="login_id" maxlength="50" placeholder="半角英数4文字以上"?>
+                        <?php endif; ?>
 
-                <?php if(isset($error['birthday']) && $error['birthday'] == 'blank'):?>
-                    <p class ='error'>*生年月日を入力してください</p>
-                <?php endif; ?>
-            </dd>
-            <dt>アイコン画像</dt>
-            <dd>
-                <input type="file" name="icon"  required>
-                <?php if(isset($error['icon']) && $error['icon'] == 'type'):?>
-                    <p class ='error'>*写真は「.jpg]または「.gif」を指定してください</p>
-                <?php elseif(!isset($error['icon'])):?>
-                    <p class ='error'>*もう一度画像を選択してください</p>
-                <?php endif; ?>
-            </dd>
+                        <?php if(isset($error['login_id']) && $error['login_id'] == 'blank'):?>
+                            <p class ='error'>*ログインIDを入力してください</p>
+                        <?php endif; ?>
+                    </dd>
+                    <dt>パスワード</dt>
+                    <dd>
+                        <input type="password" name="password" maxlength="50" placeholder="半角英数4文字以上" >
+                        <?php if(isset($error['password']) && $error['password'] == 'blank'):?>
+                            <p class ='error'>*ログインIDを入力してください</p>
+                        <?php elseif(isset($error['password']) && $error['password'] == 'length'):?>
+                            <p class ='error'>*4文字以上で入力してください</p>
+                        <?php endif; ?>
+                    </dd>
+                    <dt>パスワード再入力</dt>
+                    <dd>
+                        <input type="password" name="confirm_password" maxlength="50" placeholder="もう一度入力してください">
+                        <?php if(isset($error['confirm_password']) && $error['confirm_password'] == 'wrong'):?>
+                            <p class ='error'>*正しく入力してください</p>
+                        <?php endif; ?>
+                    </dd>
+                    <dt>生年月日</dt>
+                    <dd>
+                        <?php if(isset($_POST['birthday'])):?>
+                            <input type="date" name="birthday" max="9999-12-31"
+                            value="<?php echo htmlspecialchars($_POST['birthday'],ENT_QUOTES);?>">
+                        <?php else: ?>
+                            <input type="date" name="birthday" max="9999-12-31"?>
+                        <?php endif; ?>
 
-            <div><p><button type="submit">入力内容を確認する</button></p></div>
-        </dl>
-    </form>
+                        <?php if(isset($error['birthday']) && $error['birthday'] == 'blank'):?>
+                            <p class ='error'>*生年月日を入力してください</p>
+                        <?php endif; ?>
+                    </dd>
+                    <dt>アイコン画像</dt>
+                    <dd>
+                        <input type="file" name="icon"  required>
+                        <?php if(isset($error['icon']) && $error['icon'] == 'type'):?>
+                            <p class ='error'>*写真は「.jpg]または「.gif」を指定してください</p>
+                        <?php elseif(!isset($error['icon'])):?>
+                            <p class ='error'>*もう一度画像を選択してください</p>
+                        <?php endif; ?>
+                    </dd>
+
+                    <div><p><button type="submit">入力内容を確認する</button></p></div>
+                </dl>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

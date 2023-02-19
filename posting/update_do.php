@@ -1,6 +1,7 @@
 <?php
 require('../dbconnect.php');
 
+if($_POST['title'] !== '' && $_POST['article'] !== ''){
 $stmt = $db->prepare('update articles set title=?, article=? where id=?');
 if(!$stmt){
     die($db->error);
@@ -14,5 +15,8 @@ if(!$success){
     die($db->error);
 }
 header('Location: post.php?id='.$id);
+}else{
+    header('Location: update.php?id='.$id);
+}
 
 ?>
